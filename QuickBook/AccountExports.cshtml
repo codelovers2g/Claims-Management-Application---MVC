@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "AccountExports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .adjustmentMessage {
+        margin-bottom: 0px;
+    }
+
+    .formrow {
+        height: 30px;
+    }
+    /* Small devices (tablets, 768px and up) */
+    @@media (min-width: 768px) {
+        .text-CenteOrRight {
+            text-align: center;
+        }
+
+        .SyncControls {
+            /*width: 100px;*/
+            text-align: right;
+        }
+    }
+    /* Medium devices (desktops, 992px and up) */
+    @@media(min-width: 992px) {
+        .text-CenteOrRight {
+            text-align: center;
+        }
+
+        .SyncControls {
+            width: 100px;
+            text-align: right;
+        }
+    }
+    /* Large devices (large desktops, 1200px and up) */
+    @@media (min-width: 1200px) {
+        .text-CenteOrRight {
+            text-align: right;
+        }
+
+        .SyncControls {
+            width: 100px;
+            text-align: right;
+        }
+    }
+</style>
+<script src="https://code.iconify.design/1/1.0.5/iconify.min.js"></script>
+<script src="~/Areas/Accounts/bscripts/Exports.js"></script>
+<section class="content">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+                <h2>
+                    Accounts Exports
+                    <small class="text-muted">Welcome to Accounts Admin Panel</small>
+                </h2>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12 my-1">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="/Admin/Admin"><i class="zmdi zmdi-home"></i> Admin</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Accounts</a></li>
+                    <li class="breadcrumb-item active">Account Exports</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="row p-2" style="">
+                        <div class="col-md-12">
+                            <div class="card float-right border border-primary m-2 mb-0">
+                                <div class="card-body text-center" style="min-height: 63px;background: aliceblue; margin-left: 20px;">
+                                    <div class="row">
+                                        <div class="col-md-3" style="padding-top: 18px;">
+                                            <div class="form-group">
+                                                <small class="text-muted text-left pl-1">Synced up to: <span id="lastsyncExports"></span></small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3" style="padding-top: 18px;">View All Synced Cases <input type="radio" name="SyncedAccounts" id="AlreadySynced" /></div>
+                                        <div class="col-md-3" style="padding-top: 18px;">View Cases To Be Synced <input type="radio" name="SyncedAccounts" id="ToBeSynced" /></div>
+                                        <div class="col-md-3 @*text-right*@ text-CenteOrRight float-right"> 
+                                            <button type="button" id="btnGenerateChecks" style="margin-right:10px; margin-top: 12px;    background: linear-gradient(200deg, #ff3f00, #ff7f24);" class="btn btn-primary btn-round padding-1">Generate Checks</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix container">
+                        <div class="col-sm-4 fordateerror">
+                            <label class="cot-bolt">From</label>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="spnExportFrom"> <i class="zmdi zmdi-calendar-note"></i></span>
+                                <input autocomplete="off" class="form-control Newdatepicker" id="exportFromDate" maxlength="20" placeholder="Ex: 07/30/2016" type="text" value="" aria-invalid="false">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 fordateerror">
+                            <label class="cot-bolt">To</label>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="spnExportTo"> <i class="zmdi zmdi-calendar-note"></i></span>
+                                <input autocomplete="off" class="form-control Newdatepicker" id="exportToDate" maxlength="20" placeholder="Ex: 07/30/2016" type="text" value="" aria-invalid="false">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" style="margin-top:30px" id="btnSearchExport" class="btn btn-primary btn-round">Search</button>
+                        </div>
+                    </div>
+                    <div class="body px-3 py-0">
+                        <div class="table-responsive">
+                            <table id="tblAccountExports" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Claimant Name</th>
+                                        <th>DateOfExam</th>
+                                        <th>Doctor Name</th>
+                                        <th>Doctor Location</th>
+                                        <th>Charges (in $)</th>
+                                        <th>Action <input type="checkbox" id="CheckAll" /></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
